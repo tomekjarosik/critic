@@ -323,6 +323,9 @@ class uWSGIBackend(Service):
         self.enabled_path = os.path.join(
             self.etc_dir, "apps-enabled/critic-backend-main.ini")
 
+    def start(self, errors_are_fatal=True):
+        Service.start(self, False)
+
     def install(self, data):
         process_configuration_file(
             "install", data, self.template_path, self.target_path)
@@ -374,6 +377,9 @@ class uWSGIFrontend(Service):
             self.etc_dir, "apps-available/critic-frontend-main.ini")
         self.enabled_path = os.path.join(
             self.etc_dir, "apps-enabled/critic-frontend-main.ini")
+
+    def start(self, errors_are_fatal=True):
+        Service.start(self, False)
 
     def install(self, data):
         process_configuration_file(
